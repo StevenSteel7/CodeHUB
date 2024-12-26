@@ -283,6 +283,25 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 ;
 ;
 const UserItem = ({ session })=>{
+    const router = useRouter();
+    const [pending, setPending] = useState(false);
+    const handleSignOut = async ()=>{
+        try {
+            setPending(true);
+            await authClient.signOut({
+                fetchOptions: {
+                    onSuccess: ()=>{
+                        router.push("/sign-in");
+                        router.refresh();
+                    }
+                }
+            });
+        } catch (error) {
+            console.error("Error signing out:", error);
+        } finally{
+            setPending(false);
+        }
+    };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dropdown$2d$menu$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DropdownMenu"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dropdown$2d$menu$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DropdownMenuTrigger"], {
@@ -298,12 +317,12 @@ const UserItem = ({ session })=>{
                                         src: "https://avatars.dicebear.com/api/avataaars/john-doe.svg"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(main)/_components/user-item.tsx",
-                                        lineNumber: 19,
+                                        lineNumber: 39,
                                         columnNumber: 25
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/(main)/_components/user-item.tsx",
-                                    lineNumber: 18,
+                                    lineNumber: 38,
                                     columnNumber: 21
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -311,31 +330,31 @@ const UserItem = ({ session })=>{
                                     children: session.user.name
                                 }, void 0, false, {
                                     fileName: "[project]/app/(main)/_components/user-item.tsx",
-                                    lineNumber: 23,
+                                    lineNumber: 43,
                                     columnNumber: 21
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/(main)/_components/user-item.tsx",
-                            lineNumber: 17,
+                            lineNumber: 37,
                             columnNumber: 17
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevrons$2d$left$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronsLeftRight$3e$__["ChevronsLeftRight"], {
                             className: "rotate-90 ml-2 text-muted-foreground h-4 w-4"
                         }, void 0, false, {
                             fileName: "[project]/app/(main)/_components/user-item.tsx",
-                            lineNumber: 25,
+                            lineNumber: 45,
                             columnNumber: 17
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/(main)/_components/user-item.tsx",
-                    lineNumber: 15,
+                    lineNumber: 35,
                     columnNumber: 13
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(main)/_components/user-item.tsx",
-                lineNumber: 14,
+                lineNumber: 34,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dropdown$2d$menu$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DropdownMenuContent"], {
@@ -352,7 +371,7 @@ const UserItem = ({ session })=>{
                                 children: session.user.email
                             }, void 0, false, {
                                 fileName: "[project]/app/(main)/_components/user-item.tsx",
-                                lineNumber: 30,
+                                lineNumber: 50,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -365,17 +384,17 @@ const UserItem = ({ session })=>{
                                                 src: "https://avatars.dicebear.com/api/avataaars/john-doe.svg"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(main)/_components/user-item.tsx",
-                                                lineNumber: 36,
+                                                lineNumber: 56,
                                                 columnNumber: 25
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/app/(main)/_components/user-item.tsx",
-                                            lineNumber: 35,
+                                            lineNumber: 55,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/(main)/_components/user-item.tsx",
-                                        lineNumber: 34,
+                                        lineNumber: 54,
                                         columnNumber: 17
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -386,37 +405,37 @@ const UserItem = ({ session })=>{
                                                 children: session ? session.user.name : 'Guest'
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(main)/_components/user-item.tsx",
-                                                lineNumber: 40,
+                                                lineNumber: 60,
                                                 columnNumber: 25
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-xs text-muted-foreground"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/(main)/_components/user-item.tsx",
-                                                lineNumber: 41,
+                                                lineNumber: 61,
                                                 columnNumber: 25
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/(main)/_components/user-item.tsx",
-                                        lineNumber: 39,
+                                        lineNumber: 59,
                                         columnNumber: 21
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/(main)/_components/user-item.tsx",
-                                lineNumber: 33,
+                                lineNumber: 53,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(main)/_components/user-item.tsx",
-                        lineNumber: 29,
+                        lineNumber: 49,
                         columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dropdown$2d$menu$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DropdownMenuSeparator"], {}, void 0, false, {
                         fileName: "[project]/app/(main)/_components/user-item.tsx",
-                        lineNumber: 45,
+                        lineNumber: 65,
                         columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dropdown$2d$menu$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DropdownMenuItem"], {
@@ -424,19 +443,19 @@ const UserItem = ({ session })=>{
                         children: "SignoutButton"
                     }, void 0, false, {
                         fileName: "[project]/app/(main)/_components/user-item.tsx",
-                        lineNumber: 46,
+                        lineNumber: 66,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/(main)/_components/user-item.tsx",
-                lineNumber: 28,
+                lineNumber: 48,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/(main)/_components/user-item.tsx",
-        lineNumber: 13,
+        lineNumber: 33,
         columnNumber: 5
     }, this);
 };

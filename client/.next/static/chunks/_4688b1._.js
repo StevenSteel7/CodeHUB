@@ -398,7 +398,7 @@ function SignoutButton() {
             await __TURBOPACK__imported__module__$5b$project$5d2f$auth$2d$client$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["authClient"].signOut({
                 fetchOptions: {
                     onSuccess: ()=>{
-                        router.push("/sign-in");
+                        router.push("/");
                         router.refresh();
                     }
                 }
@@ -415,7 +415,7 @@ function SignoutButton() {
         children: "Sign Out"
     }, void 0, false, {
         fileName: "[project]/app/(landing)/_componentsForLandingPage/signout-button.tsx",
-        lineNumber: 31,
+        lineNumber: 33,
         columnNumber: 3
     }, this);
 }

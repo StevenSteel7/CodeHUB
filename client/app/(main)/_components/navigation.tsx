@@ -124,7 +124,8 @@ const navigation = () => {
         
         
         <div>
-            <UserItem session = {session}/>
+            <UserItem />
+            
         </div>
 
         <div className="mt-4">

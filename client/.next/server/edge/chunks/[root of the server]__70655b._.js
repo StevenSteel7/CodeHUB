@@ -30,40 +30,34 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/esm/server/web/spec-extension/response.js [middleware] (ecmascript)");
 ;
 ;
-const authRoutes = [
+const publicRoutes = [
+    "/",
     "/sign-in",
     "/sign-up"
 ];
-const passwordRoutes = [
-    "/reset-password",
-    "/forgot-password"
-];
-const adminRoutes = [
-    "/admin"
-];
 async function authMiddleware(request) {
     const pathName = request.nextUrl.pathname;
-    const isAuthRoute = authRoutes.includes(pathName);
-    const isPasswordRoute = passwordRoutes.includes(pathName);
-    const isAdminRoute = adminRoutes.includes(pathName);
+    // Fetch the session using betterFetch
     const { data: session } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$better$2d$fetch$2f$fetch$2f$dist$2f$index$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["betterFetch"])("/api/auth/get-session", {
         baseURL: process.env.BETTER_AUTH_URL,
         headers: {
-            //get the cookie from the request
+            // Get the cookie from the request
             cookie: request.headers.get("cookie") || ""
         }
     });
+    // If user is authenticated
+    if (session) {
+        // Allow access to all routes for authenticated users
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next();
+    }
+    // If user is not authenticated
     if (!session) {
-        if (isAuthRoute || isPasswordRoute) {
+        // Allow unauthenticated users to access only public routes
+        if (publicRoutes.includes(pathName)) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next();
         }
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL("/", request.url));
-    }
-    if (isAuthRoute || isPasswordRoute) {
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL("/", request.url));
-    }
-    if (isAdminRoute && session.user.role !== "admin") {
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL("/", request.url));
+        // Redirect unauthenticated users to /sign-in for other routes
+        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL("/sign-in", request.url));
     }
     return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next();
 }

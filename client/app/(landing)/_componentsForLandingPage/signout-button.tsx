@@ -5,7 +5,9 @@ import { authClient } from "@/auth-client";
 import LoadingButton from "@/components/loading-button";
 import { useState } from "react";
 
+
 export default function SignoutButton() {
+
 	const router = useRouter();
 	const [pending, setPending] = useState(false);
 
@@ -15,7 +17,7 @@ export default function SignoutButton() {
 			await authClient.signOut({
 				fetchOptions: {
 					onSuccess: () => {
-						router.push("/sign-in");
+						router.push("/");
 						router.refresh();
 					},
 				},

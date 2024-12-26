@@ -1,13 +1,45 @@
 "use client";
 
 
+import { authClient } from "@/auth-client";
+import LoadingButton from "@/components/loading-button";
  import {Avatar, AvatarImage} from "@/components/ui/avatar"; 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem ,
          DropdownMenuSeparator, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
+import { useSession } from "@/context/sessionContext";
 import { ChevronsLeftRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-const UserItem = ({session} :any) => {
 
+
+const UserItem = () => {
+
+const sessionContext = useSession();
+const session = sessionContext ? sessionContext.session : null;
+
+const [pending, setPending] = useState(false);
+const router = useRouter();
+	
+
+
+    const handleSignOut = async () => {
+        try {
+            setPending(true);
+            await authClient.signOut({
+                fetchOptions: {
+                    onSuccess: () => {                        
+                        router.refresh(); // Clear cached data
+                        router.push("/");   
+                    },
+                },
+            });
+        } catch (error) {
+            console.error("Error signing out:", error);
+        } finally {
+            setPending(false);
+        }
+    };
     
   return (
     <DropdownMenu>
@@ -44,8 +76,9 @@ const UserItem = ({session} :any) => {
             </div>
             <DropdownMenuSeparator/>
             <DropdownMenuItem className="w-full cursor-pointer text-muted-foreground">
-                {/* SignOut Button */}
-                SignoutButton
+               <LoadingButton pending={pending} onClick={handleSignOut}>
+                        Sign Out
+                </LoadingButton>
             </DropdownMenuItem>
         </DropdownMenuContent>
     </DropdownMenu>

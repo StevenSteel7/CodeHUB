@@ -21,10 +21,7 @@ export const SessionProvider = ({ children, initialSession }: { children: React.
       setSession(initialSession);
     }
 
-  }, []);
-
-
-
+  }, [session]);
 
 
   return (

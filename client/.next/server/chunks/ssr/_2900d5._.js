@@ -714,7 +714,7 @@ function SignIn() {
                 setPendingCredentials(true);
             },
             onSuccess: async ()=>{
-                router.push("/");
+                router.push("/documents");
                 router.refresh();
             },
             onError: (ctx)=>{
@@ -736,7 +736,7 @@ function SignIn() {
                 setPendingGithub(true);
             },
             onSuccess: async ()=>{
-                router.push("/");
+                router.push("/documents");
                 router.refresh();
             },
             onError: (ctx)=>{
