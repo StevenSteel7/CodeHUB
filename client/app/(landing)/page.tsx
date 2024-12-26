@@ -1,6 +1,6 @@
 'use client';
 
-import Footer from './_componentsForLandingPage/footer'
+import Footer from '@/app/(landing)/_componentsForLandingPage/footer'
 
 import React from 'react'
 import Navbar from './_componentsForLandingPage/navbar'
@@ -8,7 +8,14 @@ import Link from 'next/link';
 import { ArrowRight, BookOpen, Code, Zap } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
+
+import { useSession } from "@/context/sessionContext";
+
 const LandingPage = () => {
+
+  const sessionContext = useSession();
+  const session = sessionContext ? sessionContext.session : null;
+
   return (
 
     <div className='min-h-full flex flex-col'> {/* flex-col -> stack vertically */}
@@ -19,14 +26,39 @@ const LandingPage = () => {
       <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 flex items-center justify-center">
         <div className="container px-4 md:px-6 mx-auto">
           <div className="flex flex-col items-center space-y-6 text-center max-w-3xl mx-auto">
+            
+            
+          {!session? 
+            
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-center">
               Welcome to all your coding notes with{' '}
+
               <span className="underline decoration-primary decoration-4">
                 CodeHUB
               </span>
+
             </h1>
+            :
+
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-center">
+              Welcome {session.user.name}<br /> to all your coding notes with{' '}
+
+              <span className="underline decoration-primary decoration-4">
+                CodeHUB
+              </span>
+
+            </h1>
+
+
+          }
+
+
+          
+
+
+
             <p className="text-muted-foreground md:text-xl text-center max-w-[700px]">
-              Remember more, Learn Faster
+              Remember more, Learn Faster 
             </p>
             <Link href="/documents" className="mt-8">
               <Button

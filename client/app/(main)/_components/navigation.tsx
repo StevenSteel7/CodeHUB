@@ -6,6 +6,9 @@ import {useMediaQuery} from 'react-responsive';
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import UserItem from "./user-item";
+import { useSession } from "@/context/sessionContext";
+
+
 
 const navigation = () => {
     const isResizingRef = useRef(false);
@@ -15,6 +18,10 @@ const navigation = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
     const [isCollapsed, setIsCollapsed] = useState(isMobile)
     const pathname = usePathname();
+   
+    const sessionContext = useSession();
+    const session = sessionContext ? sessionContext.session : 'Guest';
+
 
     //use useeffect to constantally monitor the changes
     useEffect(() => {
@@ -117,7 +124,7 @@ const navigation = () => {
         
         
         <div>
-            <UserItem/>
+            <UserItem session = {session}/>
         </div>
 
         <div className="mt-4">

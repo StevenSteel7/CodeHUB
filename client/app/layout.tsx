@@ -3,6 +3,13 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 
+
+// for auth
+import { SessionProvider } from "@/context/sessionContext";
+import { auth } from "@/auth";
+import { headers } from "next/headers";
+
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -34,7 +41,17 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({children,}: Readonly<{ children: React.ReactNode;}>) {
+
+
+
+            /* we made this async for session await */
+export default async function RootLayout({children,}: Readonly<{ children: React.ReactNode;}>) {
+
+
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
+  
   return (
 
 
@@ -47,8 +64,11 @@ export default function RootLayout({children,}: Readonly<{ children: React.React
             enableSystem
             disableTransitionOnChange
           >
-          
+          <SessionProvider initialSession={session}>
+
             {children}
+
+          </SessionProvider>
           </ThemeProvider>
         </body>
       </html>

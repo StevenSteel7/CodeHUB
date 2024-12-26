@@ -10,7 +10,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import LoadingButton from "@/app/(landing)/_componentsForLandingPage/loading-button";
+import LoadingButton from "@/components/loading-button";
 import { signInSchema } from "@/lib/zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -138,10 +138,7 @@ export default function SignIn() {
 						</form>
 					</Form>
 					<div className="mt-4">
-						<LoadingButton
-							pending={pendingGithub}
-							onClick={handleSignInWithGithub}
-						>
+						<LoadingButton pending={pendingGithub} onClick={handleSignInWithGithub}>
 							<GithubIcon className="w-4 h-4 mr-2" />
 							Continue with GitHub
 						</LoadingButton>

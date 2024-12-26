@@ -1,15 +1,21 @@
 "use client";
 
 // for authentication and theming
+import { auth } from "@/auth";
 
 import { redirect } from "next/navigation";
 import Navigation from "@/app/(main)/_components/navigation";
 import {Toaster} from "sonner";
-const mainLayout = ({children}: { children: React.ReactNode }) => {
- /* session */
- const session = 1;
+import { useSession } from "@/context/sessionContext";
 
- /* if loading spinner */
+
+const mainLayout = ({children}: { children: React.ReactNode }) => {
+const sessionContext = useSession();
+const session = sessionContext ? sessionContext.session : null
+    
+
+
+
 
  // if not autheicated
 if(!session){

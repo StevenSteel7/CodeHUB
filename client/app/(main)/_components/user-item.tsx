@@ -6,7 +6,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem ,
          DropdownMenuSeparator, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
 import { ChevronsLeftRight } from "lucide-react";
 
-const UserItem = () => {
+const UserItem = ({session} :any) => {
+
     
   return (
     <DropdownMenu>
@@ -19,7 +20,7 @@ const UserItem = () => {
                     </Avatar>                               
                     
                                                 {/* name from backend   line-clamp truncated line if toooo looong*/}
-                    <span className="text-start frornt-medium line-clamp-1">Steven Musa</span>       
+                    <span className="text-start frornt-medium line-clamp-1">{session.user.name}</span>       
                 </div>
                 <ChevronsLeftRight className="rotate-90 ml-2 text-muted-foreground h-4 w-4" />
             </div>
@@ -27,7 +28,7 @@ const UserItem = () => {
         <DropdownMenuContent className="w-80" align="start" alignOffset={11} forceMount>
             <div className="flex flex-col space-y-4">
                 <p className=" text-base font-medium leading-none text-muted-foreground">
-                   {/*  {user?.emailAddress} */} soggsteven92@gmail.com
+                    {session.user.email} 
                 </p>
             <div className=" flex items-center gap-x-2">
                 <div className="rounded-md bg-secondary p-1">
@@ -36,7 +37,7 @@ const UserItem = () => {
                     </Avatar>
                     </div>
                     <div className="space-y-1">
-                        <p className="text-sm font-medium line-clamp-1">Steven Musa</p>
+                        <p className="text-sm font-medium line-clamp-1">{session? session.user.name : 'Guest'}</p>
                         <p className="text-xs text-muted-foreground"></p>
                     </div>
                 </div>
@@ -44,7 +45,7 @@ const UserItem = () => {
             <DropdownMenuSeparator/>
             <DropdownMenuItem className="w-full cursor-pointer text-muted-foreground">
                 {/* SignOut Button */}
-                Logout
+                SignoutButton
             </DropdownMenuItem>
         </DropdownMenuContent>
     </DropdownMenu>

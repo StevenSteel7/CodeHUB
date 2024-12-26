@@ -988,7 +988,7 @@ function SignIn() {
                                         className: "w-4 h-4 mr-2"
                                     }, void 0, false, {
                                         fileName: "[project]/app/(landing)/sign-in/page.tsx",
-                                        lineNumber: 145,
+                                        lineNumber: 142,
                                         columnNumber: 8
                                     }, this),
                                     "Continue with GitHub"
@@ -1011,12 +1011,12 @@ function SignIn() {
                                 children: "Forgot password?"
                             }, void 0, false, {
                                 fileName: "[project]/app/(landing)/sign-in/page.tsx",
-                                lineNumber: 150,
+                                lineNumber: 147,
                                 columnNumber: 7
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/(landing)/sign-in/page.tsx",
-                            lineNumber: 149,
+                            lineNumber: 146,
                             columnNumber: 6
                         }, this)
                     ]

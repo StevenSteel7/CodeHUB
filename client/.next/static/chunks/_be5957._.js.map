@@ -1,9 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://F%3A/Projects/Projects%20webdev/codehub/app/%28main%29/layout.tsx"],"sourcesContent":["\"use client\";\r\n\r\n// for authentication and theming\r\n\r\nimport { redirect } from \"next/navigation\";\r\nimport navigation from \"@/app/(main)/_components/navigation\";\r\n\r\nconst mainLayout = ({children}: { children: React.ReactNode }) => {\r\n /* session */\r\n const session = 1;\r\n\r\n /* if loading spinner */\r\n\r\n // if not autheicated\r\nif(!session){\r\n    return  redirect('/');\r\n    \r\n}\r\n    \r\nreturn (\r\n    <div className = \"h-full flex dark:bg-[1F1F1F]\">\r\n        <Navigation/>\r\n        <main className=\"flex-1 h-full overflow-y-auto\"> \r\n            {children}\r\n        </main>\r\n    </div>\r\n  )\r\n}\r\n\r\nexport default mainLayout"],"names":[],"mappings":";;;;AAEA,iCAAiC;AAEjC;AAJA;;;AAOA,MAAM,aAAa,CAAC,EAAC,QAAQ,EAAgC;IAC5D,WAAW,GACX,MAAM,UAAU;IAEhB,sBAAsB,GAEtB,qBAAqB;IACtB,uCAAY;;IAGZ;IAEA,qBACI,6LAAC;QAAI,WAAY;;0BACb,6LAAC;;;;;0BACD,6LAAC;gBAAK,WAAU;0BACX;;;;;;;;;;;;AAIb;uCAEe"}},
-    {"offset": {"line": 49, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}},
-    {"offset": {"line": 59, "column": 0}, "map": {"version":3,"sources":["file://F%3A/Projects/Projects%20webdev/codehub/node_modules/next/navigation.js"],"sourcesContent":["module.exports = require('./dist/client/components/navigation')\n"],"names":[],"mappings":"AAAA,OAAO,OAAO","ignoreList":[0]}},
-    {"offset": {"line": 60, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
-}
