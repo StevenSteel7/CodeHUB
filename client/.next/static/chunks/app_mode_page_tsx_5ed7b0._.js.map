@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://F%3A/Projects/Projects%20webdev/codehub/app/mode/page.tsx"],"sourcesContent":["\"use client\"\r\n\r\nimport * as React from \"react\"\r\nimport { Moon, MoonIcon, Sun } from \"lucide-react\"\r\nimport { useTheme } from \"next-themes\"\r\n\r\nimport { Button } from \"@/components/ui/button\"\r\nimport {\r\n  DropdownMenu,\r\n  DropdownMenuContent,\r\n  DropdownMenuItem,\r\n  DropdownMenuTrigger,\r\n} from \"@/components/ui/dropdown-menu\"\r\n\r\n\r\n\r\nconst ModeToggle = () => {\r\n  return (\r\n    <div>mode</div>\r\n  )\r\n}\r\n\r\nexport default ModeToggle\r\n\r\n\r\nconst { setTheme } = useTheme()\r\n\r\n"],"names":[],"mappings":";;;;AAIA;AAJA;;;AAgBA,MAAM,aAAa;IACjB,qBACE,6LAAC;kBAAI;;;;;;AAET;KAJM;uCAMS;AAGf,MAAM,EAAE,QAAQ,EAAE,GAAG,CAAA,GAAA,mJAAA,CAAA,WAAQ,AAAD"}},
+    {"offset": {"line": 32, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://F%3A/Projects/Projects%20webdev/codehub/app/%28landing%29/page.tsx"],"sourcesContent":["'use client';\r\n\r\nimport Footer from './_componentsForLandingPage/footer'\r\nimport  Heading from './_componentsForLandingPage/heading'\r\nimport React from 'react'\r\nimport Navbar from './_componentsForLandingPage/navbar'\r\nimport { ArrowRight, BookOpen, Code, Link, Zap } from 'lucide-react'\r\nimport { Button } from '@/components/ui/button'\r\n\r\nconst LandingPage = () => {\r\n  return (\r\n\r\n    \r\n    <></>\r\n  )\r\n}\r\n\r\nexport default LandingPage"],"names":[],"mappings":";;;;AAAA;;AASA,MAAM,cAAc;IAClB,qBAGE;AAEJ;uCAEe"}},
+    {"offset": {"line": 17, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}

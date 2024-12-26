@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file://F%3A/Projects/Projects%20webdev/codehub/app/%28main%29/layout.tsx"],"sourcesContent":["import React from 'react'\r\n\r\nconst mainLayout = ({children}: { children: React.ReactNode }) => {\r\n \r\n \r\n    return (\r\n    <div>{children}</div>\r\n  )\r\n}\r\n\r\nexport default mainLayout"],"names":[],"mappings":";;;;;AAEA,MAAM,aAAa,CAAC,EAAC,QAAQ,EAAgC;IAGzD,qBACA,8OAAC;kBAAK;;;;;;AAEV;uCAEe"}},
+    {"offset": {"line": 22, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"A"}}]
+}
