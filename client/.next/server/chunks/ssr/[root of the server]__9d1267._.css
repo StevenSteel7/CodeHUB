@@ -681,6 +681,10 @@ body {
   height: 2.25rem;
 }
 
+.h-\[18px\] {
+  height: 18px;
+}
+
 .h-\[var\(--radix-select-trigger-height\)\] {
   height: var(--radix-select-trigger-height);
 }
@@ -703,6 +707,10 @@ body {
 
 .max-h-screen {
   max-height: 100vh;
+}
+
+.min-h-\[27x\] {
+  min-height: 27x;
 }
 
 .min-h-full {
@@ -971,6 +979,12 @@ body {
   overflow-y: auto;
 }
 
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .whitespace-nowrap {
   white-space: nowrap;
 }
@@ -1144,6 +1158,10 @@ body {
 
 .pr-2 {
   padding-right: .5rem;
+}
+
+.pr-3 {
+  padding-right: .75rem;
 }
 
 .pr-8 {

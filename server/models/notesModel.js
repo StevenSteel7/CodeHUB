@@ -1,4 +1,6 @@
-const noteSchema = new mongoose.Schema({
+import mongoose  from 'mongoose';
+
+const NoteSchema = new mongoose.Schema({
   
     title: {
       type: String,
@@ -7,7 +9,7 @@ const noteSchema = new mongoose.Schema({
     },
     content: {
       type: String,
-      required: true,
+      required: false,
     },
     tags: [
       {
@@ -24,7 +26,7 @@ const noteSchema = new mongoose.Schema({
       default: false,
     },
     userId: {
-      type: mongoose.Schema.Types.ObjectId,  /* to connected with a user */
+      type: String,  /* to connected with a user */
       ref: 'User',
       required: true,
     },
@@ -38,5 +40,5 @@ const noteSchema = new mongoose.Schema({
     },
   });
   
-  module.exports = mongoose.model('Note', noteSchema);
-  
+const Note = mongoose.models.Note || mongoose.model('Note', NoteSchema,'Note');
+export default Note;

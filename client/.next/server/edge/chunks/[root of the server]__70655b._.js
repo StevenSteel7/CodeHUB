@@ -25,10 +25,8 @@ __turbopack_esm__({
     "config": (()=>config),
     "default": (()=>authMiddleware)
 });
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$better$2d$fetch$2f$fetch$2f$dist$2f$index$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/@better-fetch/fetch/dist/index.js [middleware] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$api$2f$server$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__$3c$module__evaluation$3e$__ = __turbopack_import__("[project]/node_modules/next/dist/esm/api/server.js [middleware] (ecmascript) <module evaluation>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/next/dist/esm/server/web/spec-extension/response.js [middleware] (ecmascript)");
-;
 ;
 const publicRoutes = [
     "/",
@@ -37,29 +35,36 @@ const publicRoutes = [
 ];
 async function authMiddleware(request) {
     const pathName = request.nextUrl.pathname;
-    // Fetch the session using betterFetch
-    const { data: session } = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$better$2d$fetch$2f$fetch$2f$dist$2f$index$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["betterFetch"])("/api/auth/get-session", {
-        baseURL: process.env.BETTER_AUTH_URL,
-        headers: {
-            // Get the cookie from the request
-            cookie: request.headers.get("cookie") || ""
-        }
-    });
-    // If user is authenticated
-    if (session) {
-        // Allow access to all routes for authenticated users
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next();
+    /*
+  // Fetch the session using betterFetch
+  const { data: session } = await betterFetch<Session>(
+    "/api/auth/get-session",
+    {
+      baseURL: process.env.BETTER_AUTH_URL,
+      headers: {
+        // Get the cookie from the request
+        cookie: request.headers.get("cookie") || "",
+      },
+    },
+  );
+
+  // If user is authenticated
+  if (session) {
+    // Allow access to all routes for authenticated users
+    return NextResponse.next();
+  }
+
+  // If user is not authenticated
+  if (!session) {
+    // Allow unauthenticated users to access only public routes
+    if (publicRoutes.includes(pathName)) {
+      return NextResponse.next();
     }
-    // If user is not authenticated
-    if (!session) {
-        // Allow unauthenticated users to access only public routes
-        if (publicRoutes.includes(pathName)) {
-            return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next();
-        }
-        // Redirect unauthenticated users to /sign-in for other routes
-        return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].redirect(new URL("/sign-in", request.url));
-    }
-    return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next();
+
+    // Redirect unauthenticated users to /sign-in for other routes
+    return NextResponse.redirect(new URL("/sign-in", request.url));
+  }
+ */ return __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$spec$2d$extension$2f$response$2e$js__$5b$middleware$5d$__$28$ecmascript$29$__["NextResponse"].next();
 }
 const config = {
     matcher: [

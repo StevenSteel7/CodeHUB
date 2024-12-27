@@ -1,14 +1,15 @@
 "use client";
 
-import { ChevronsLeft, MenuIcon } from "lucide-react"
+import { ChevronsLeft, MenuIcon, PlusCircle } from "lucide-react"
 import { ComponentRef, use, useEffect, useRef, useState } from 'react';
 import {useMediaQuery} from 'react-responsive';
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import UserItem from "./user-item";
 import { useSession } from "@/context/sessionContext";
-
-
+import NoteListItem from "./noteListItem";
+import createNewNote from "./createNewNote";
+import { Button } from "@/components/ui/button";
 
 const navigation = () => {
     const isResizingRef = useRef(false);
@@ -18,9 +19,8 @@ const navigation = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
     const [isCollapsed, setIsCollapsed] = useState(isMobile)
     const pathname = usePathname();
-   
     const sessionContext = useSession();
-    const session = sessionContext ? sessionContext.session : 'Guest';
+   const session = sessionContext ? sessionContext.session : null;
 
 
     //use useeffect to constantally monitor the changes
@@ -71,9 +71,6 @@ const navigation = () => {
       };
 
       
-
-
-
       const resetWidth = () => {
         if (sidebarRef.current && navbarRef.current) {
           setIsCollapsed(false);
@@ -100,8 +97,8 @@ const navigation = () => {
 
 
 
-;  return (
-    <>
+  return (
+   <>
    <aside
         ref={sidebarRef}
         className={cn(
@@ -121,11 +118,11 @@ const navigation = () => {
         >
             <ChevronsLeft className="h-6 w-6 "/>    
         </div>
-        
-        
         <div>
             <UserItem />
+            {/* <NoteListItem onClick = {createNewNote} label = "New page" icon ={PlusCircle}/> */}
             
+              <Button onClick={() => createNewNote(session)} />
         </div>
 
         <div className="mt-4">

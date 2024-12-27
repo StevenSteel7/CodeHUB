@@ -1,4 +1,4 @@
-import { betterFetch } from "@better-fetch/fetch";
+ import { betterFetch } from "@better-fetch/fetch";
 import { NextResponse, type NextRequest } from "next/server";
 import type { Session } from "@/auth";
 
@@ -6,7 +6,7 @@ const publicRoutes = ["/", "/sign-in", "/sign-up"];
 
 export default async function authMiddleware(request: NextRequest) {
   const pathName = request.nextUrl.pathname;
-
+/*
   // Fetch the session using betterFetch
   const { data: session } = await betterFetch<Session>(
     "/api/auth/get-session",
@@ -35,7 +35,7 @@ export default async function authMiddleware(request: NextRequest) {
     // Redirect unauthenticated users to /sign-in for other routes
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
-
+ */
   return NextResponse.next();
 }
 
