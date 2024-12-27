@@ -8,8 +8,9 @@ import { cn } from "@/lib/utils";
 import UserItem from "./user-item";
 import { useSession } from "@/context/sessionContext";
 import NoteListItem from "./noteListItem";
-import createNewNote from "./createNewNote";
+import AllNotesList from "./allNotesList";
 import { Button } from "@/components/ui/button";
+import axios from "axios";
 
 const navigation = () => {
     const isResizingRef = useRef(false);
@@ -23,7 +24,56 @@ const navigation = () => {
    const session = sessionContext ? sessionContext.session : null;
 
 
-    //use useeffect to constantally monitor the changes
+
+   const [notes, setNotes] = useState<any[]>([]); // State to manage all notes
+   const [loading, setLoading] = useState(true); // Loading state for fetching notes
+ 
+   // Fetch all notes when the component mounts once
+   useEffect(() => {
+     const fetchNotes = async () => {
+       setLoading(true);
+       try {
+         const response = await axios.get('http://localhost:8080/api/notes/get-all-notes', {
+           headers: {
+             'Content-Type': 'application/json',
+             Authorization: session?.session.token,
+           },
+         });
+         setNotes(response.data.notes || []);
+       } catch (error) {
+         console.error('Failed to fetch notes:', error);
+       }
+       setLoading(false);
+     };
+ 
+     fetchNotes();
+   }, [session]);
+ 
+   // Function to create a new note
+   const createNewNote = async (session: any) => {
+
+    try {      
+    const response = await axios.post('http://localhost:8080/api/notes/create-note', 
+      { title: 'Untitled', content: '' },//content
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': session.session.token, // Include the session token in the 'header'
+        },
+      }
+    );
+    const newNote = response.data;
+    setNotes((prevNotes) => [...prevNotes, newNote]);
+
+    // Update the UI to reflect the new note
+  } catch (error) {
+    console.error('Failed to create note', error);
+  } 
+};
+
+
+
+    //use useffect to constantally monitor the changes
     useEffect(() => {
         if (isMobile) {
           collapse();
@@ -120,13 +170,23 @@ const navigation = () => {
         </div>
         <div>
             <UserItem />
-            {/* <NoteListItem onClick = {createNewNote} label = "New page" icon ={PlusCircle}/> */}
-            
-              <Button onClick={() => createNewNote(session)} />
+             <NoteListItem onClick = {()=>createNewNote(session)}label = "New page" icon ={PlusCircle}/> 
+           
+             
         </div>
 
-        <div className="mt-4">
-            <p>Docs</p>
+        <div className="mt-4" id = "notes-list"> {/*  to display all notes */}
+        {loading && <p>Loading notes...</p>}
+          {notes.length > 0 ? (
+            notes.map((note) => (
+             
+              note && (
+                <div key={note._id} className="note-item">
+                  <p>{note.title || "Untitled"}</p>
+                </div>
+                  )
+                  ))
+                ) : ( !loading &&<p>No notes available</p> )} 
         </div>   
                            {/* for group/sidebar */}
         <div
@@ -135,10 +195,8 @@ const navigation = () => {
             className="opacity-0 group-hover/sidebar:opacity-100 
             transition cursor-ew-resize absolute h-full w-1 bg-primary/10 right-0 top-0 "
         />
-
-
-      
     </aside>
+
     <div ref ={navbarRef}                               //to appear on top all else
         className={cn("absolute top-0 left-60 right-0 z-[9999] w-[calc(100%-240px)]",
         isResetting && "transition-all ease-in-out duration-300",

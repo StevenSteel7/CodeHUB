@@ -727,18 +727,23 @@ __turbopack_esm__({
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_import__("[project]/node_modules/axios/lib/axios.js [app-ssr] (ecmascript)");
 ;
 const createNewNote = async (session)=>{
-    console.log(session.session.token);
     try {
-        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].post('http://localhost:8080/api/notes/create-note', {
-            title: 'Untitled',
-            content: ''
-        }, {
+        /*    const response = await axios.post('http://localhost:8080/api/notes/create-note', 
+      { title: 'Untitled', content: '' },//content
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': session.session.token, // Include the session token in the 'header'
+        },
+      }
+    );
+ */ const allNotes = await __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].get('http://localhost:8080/api/notes/get-all-notes ', {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': session.session.token
             }
         });
-        /*  const allNotes = await axios.get('http://localhost:8080/api/notes/get-all-notes'); */ console.log('New note created:', response.data);
+        console.log(allNotes.data);
     // Update the UI to reflect the new note
     } catch (error) {
         console.error('Failed to create note', error);
@@ -859,46 +864,52 @@ const navigation = ()=>{
                             className: "h-6 w-6 "
                         }, void 0, false, {
                             fileName: "[project]/app/(main)/_components/navigation.tsx",
-                            lineNumber: 119,
+                            lineNumber: 120,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/(main)/_components/navigation.tsx",
-                        lineNumber: 111,
+                        lineNumber: 112,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f28$main$292f$_components$2f$user$2d$item$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                                 fileName: "[project]/app/(main)/_components/navigation.tsx",
-                                lineNumber: 122,
+                                lineNumber: 123,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                                 onClick: ()=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f28$main$292f$_components$2f$createNewNote$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"])(session)
                             }, void 0, false, {
                                 fileName: "[project]/app/(main)/_components/navigation.tsx",
-                                lineNumber: 125,
+                                lineNumber: 126,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/(main)/_components/navigation.tsx",
-                        lineNumber: 121,
+                        lineNumber: 122,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "mt-4",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            children: "Docs"
+                        children: session ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("getAll", {
+                            session: session
                         }, void 0, false, {
                             fileName: "[project]/app/(main)/_components/navigation.tsx",
-                            lineNumber: 129,
-                            columnNumber: 13
+                            lineNumber: 131,
+                            columnNumber: 9
+                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            children: "Please log in to view your notes."
+                        }, void 0, false, {
+                            fileName: "[project]/app/(main)/_components/navigation.tsx",
+                            lineNumber: 133,
+                            columnNumber: 9
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/(main)/_components/navigation.tsx",
-                        lineNumber: 128,
+                        lineNumber: 129,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -907,13 +918,13 @@ const navigation = ()=>{
                         className: "opacity-0 group-hover/sidebar:opacity-100    transition cursor-ew-resize absolute h-full w-1 bg-primary/10 right-0 top-0 "
                     }, void 0, false, {
                         fileName: "[project]/app/(main)/_components/navigation.tsx",
-                        lineNumber: 132,
+                        lineNumber: 138,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/(main)/_components/navigation.tsx",
-                lineNumber: 102,
+                lineNumber: 103,
                 columnNumber: 4
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -927,17 +938,17 @@ const navigation = ()=>{
                         className: "h-6 w-6 text-muted-foreground"
                     }, void 0, false, {
                         fileName: "[project]/app/(main)/_components/navigation.tsx",
-                        lineNumber: 149,
+                        lineNumber: 155,
                         columnNumber: 15
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/(main)/_components/navigation.tsx",
-                    lineNumber: 147,
+                    lineNumber: 153,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(main)/_components/navigation.tsx",
-                lineNumber: 142,
+                lineNumber: 148,
                 columnNumber: 5
             }, this)
         ]

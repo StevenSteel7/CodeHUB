@@ -773,7 +773,7 @@ const navigation = ()=>{
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "mt-4",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            children: "Docs"
+                            children: "notes"
                         }, void 0, false, {
                             fileName: "[project]/app/(main)/_components/navigation.tsx",
                             lineNumber: 129,
@@ -790,7 +790,7 @@ const navigation = ()=>{
                         className: "opacity-0 group-hover/sidebar:opacity-100    transition cursor-ew-resize absolute h-full w-1 bg-primary/10 right-0 top-0 "
                     }, void 0, false, {
                         fileName: "[project]/app/(main)/_components/navigation.tsx",
-                        lineNumber: 132,
+                        lineNumber: 133,
                         columnNumber: 9
                     }, this)
                 ]
@@ -810,17 +810,17 @@ const navigation = ()=>{
                         className: "h-6 w-6 text-muted-foreground"
                     }, void 0, false, {
                         fileName: "[project]/app/(main)/_components/navigation.tsx",
-                        lineNumber: 149,
+                        lineNumber: 150,
                         columnNumber: 15
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/(main)/_components/navigation.tsx",
-                    lineNumber: 147,
+                    lineNumber: 148,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/(main)/_components/navigation.tsx",
-                lineNumber: 142,
+                lineNumber: 143,
                 columnNumber: 5
             }, this)
         ]
