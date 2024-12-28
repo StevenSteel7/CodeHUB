@@ -709,8 +709,8 @@ body {
   max-height: 100vh;
 }
 
-.min-h-\[27x\] {
-  min-height: 27x;
+.min-h-\[27px\] {
+  min-height: 27px;
 }
 
 .min-h-full {
@@ -763,6 +763,10 @@ body {
 
 .w-80 {
   width: 20rem;
+}
+
+.w-\[18px\] {
+  width: 18px;
 }
 
 .w-\[calc\(100\%-240px\)\] {
@@ -989,6 +993,10 @@ body {
   white-space: nowrap;
 }
 
+.rounded {
+  border-radius: .25rem;
+}
+
 .rounded-full {
   border-radius: 9999px;
 }
@@ -1065,6 +1073,10 @@ body {
   background-color: hsl(var(--primary) / .1);
 }
 
+.bg-primary\/5 {
+  background-color: hsl(var(--primary) / .05);
+}
+
 .bg-secondary {
   background-color: hsl(var(--secondary));
 }
@@ -1091,6 +1103,11 @@ body {
 
 .p-6 {
   padding: 1.5rem;
+}
+
+.px-1\.5 {
+  padding-left: .375rem;
+  padding-right: .375rem;
 }
 
 .px-2 {
@@ -1152,6 +1169,10 @@ body {
   padding-bottom: 2.5rem;
 }
 
+.pl-3 {
+  padding-left: .75rem;
+}
+
 .pl-8 {
   padding-left: 2rem;
 }
@@ -1192,6 +1213,10 @@ body {
   vertical-align: middle;
 }
 
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -1200,6 +1225,14 @@ body {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-\[10px\] {
+  font-size: 10px;
+}
+
+.text-\[18px\] {
+  font-size: 18px;
 }
 
 .text-base {

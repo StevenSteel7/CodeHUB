@@ -1,58 +1,57 @@
 "use client";
 
-import { ChevronsLeft, MenuIcon, PlusCircle } from "lucide-react"
+import { ChevronsLeft, ChevronsRight, ChevronsRightIcon, FileIcon, FilesIcon, Icon, MenuIcon, PlusCircle, Search, Settings } from "lucide-react"
 import { ComponentRef, use, useEffect, useRef, useState } from 'react';
 import {useMediaQuery} from 'react-responsive';
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import UserItem from "./user-item";
 import { useSession } from "@/context/sessionContext";
-import NoteListItem from "./noteListItem";
+import Item from "./Item";
 import AllNotesList from "./allNotesList";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 
 const navigation = () => {
-    const isResizingRef = useRef(false);
-    const sidebarRef = useRef<ComponentRef<"aside">>(null); // causing hydration problem
-    const navbarRef = useRef<HTMLDivElement | null>(null);
-    const [isResetting, setIsResetting] = useState(false);
-    const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
-    const [isCollapsed, setIsCollapsed] = useState(isMobile)
-    const pathname = usePathname();
-    const sessionContext = useSession();
-   const session = sessionContext ? sessionContext.session : null;
+  const isResizingRef = useRef(false);
+  const sidebarRef = useRef<ComponentRef<"aside">>(null); // causing hydration problem
+  const navbarRef = useRef<HTMLDivElement | null>(null);
+  const [isResetting, setIsResetting] = useState(false);
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' })
+  const [isCollapsed, setIsCollapsed] = useState(isMobile)
+  const pathname = usePathname();
+  const sessionContext = useSession();
+  const session = sessionContext ? sessionContext.session : null;
 
+  const [notes, setNotes] = useState<any[]>([]); // State to manage all notes
+  const [loading, setLoading] = useState(true); // Loading state for fetching notes
+  
 
-
-   const [notes, setNotes] = useState<any[]>([]); // State to manage all notes
-   const [loading, setLoading] = useState(true); // Loading state for fetching notes
- 
    // Fetch all notes when the component mounts once
-   useEffect(() => {
-     const fetchNotes = async () => {
-       setLoading(true);
-       try {
-         const response = await axios.get('http://localhost:8080/api/notes/get-all-notes', {
-           headers: {
-             'Content-Type': 'application/json',
-             Authorization: session?.session.token,
-           },
-         });
-         setNotes(response.data.notes || []);
-       } catch (error) {
-         console.error('Failed to fetch notes:', error);
-       }
-       setLoading(false);
-     };
- 
-     fetchNotes();
-   }, [session]);
+    useEffect(() => {
+      const fetchNotes = async () => {
+        setLoading(true);
+        try {
+          const response = await axios.get('http://localhost:8080/api/notes/get-all-notes', {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: session?.session.token,
+            },
+          });
+          setNotes(response.data.notes || []);
+        } catch (error) {
+          console.error('Failed to fetch notes:', error);
+        }
+        setLoading(false);
+      };
+  
+      fetchNotes();
+    }, [session]);
  
    // Function to create a new note
    const createNewNote = async (session: any) => {
 
-    try {      
+     try {      
     const response = await axios.post('http://localhost:8080/api/notes/create-note', 
       { title: 'Untitled', content: '' },//content
       {
@@ -62,13 +61,15 @@ const navigation = () => {
         },
       }
     );
-    const newNote = response.data;
+    console.log(response.data);
+    const newNote =  response.data.notes;
     setNotes((prevNotes) => [...prevNotes, newNote]);
 
+
     // Update the UI to reflect the new note
-  } catch (error) {
-    console.error('Failed to create note', error);
-  } 
+    } 
+    catch (error) {console.error('Failed to create note', error);}
+ 
 };
 
 
@@ -170,25 +171,88 @@ const navigation = () => {
         </div>
         <div>
             <UserItem />
-             <NoteListItem onClick = {()=>createNewNote(session)}label = "New page" icon ={PlusCircle}/> 
+            <Item
+            label="Search"
+            icon={Search}
+            isSearch
+            onClick={() => {}}
+            />
+            <Item
+            label="Setting"
+            icon={Settings}
+            onClick={() => {}}
+            />
+
+            <Item onClick = {async ()=> {
+               // Set to false before creating a new note
+               createNewNote(session);
+
+            }
+            } label = "New page" icon ={PlusCircle}/> 
            
              
         </div>
-
+        
         <div className="mt-4" id = "notes-list"> {/*  to display all notes */}
-        {loading && <p>Loading notes...</p>}
-          {notes.length > 0 ? (
-            notes.map((note) => (
-             
-              note && (
-                <div key={note._id} className="note-item">
-                  <p>{note.title || "Untitled"}</p>
-                </div>
-                  )
-                  ))
-                ) : ( !loading &&<p>No notes available</p> )} 
+        {/*   {loading && <p>Loading notes...</p>}
+            {notes.length > 0 ? (
+              notes.map((note) => (
+                note && ( 
+                  console.log(note),
+                  <div key={note._id} className="note-item">
+                    <Item 
+                    id={note._id}
+                    label={note.title || "Untitled"}
+                    onClick={() => {}}
+                    icon={FileIcon}
+                    />
+                  </div>
+                    )))
+                  ) : ( !loading &&<p>No notes available</p> )}  */}
+             {
+           /*   <AllNotesList
+              session={session}
+              onClick={() => {}}
+              notes={notes}
+              setnotes={setNotes}
+              icon={FileIcon}
+              loading={loading}
+            />  */
+              
+            <>
+            {notes.length > 0 ? (
+                    notes.map((note: any) => (
+                       (
+                        <div key={note?._id} className="note-item">
+                          <div 
+                          
+                            role="button"
+                            className={cn(
+                              "group min-h-[27px] text-sm py-1 pl-3 w-full flex items-center text-muted-foreground font-medium",
+                              "hover:bg-neutral-300 dark:hover:bg-neutral-600"
+                            )}
+                          >
+                            <FileIcon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground" />
+                            <span className="truncate">
+                              { console.log(note) }
+                              {note.title}
+                            </span>
+                          </div>
+                          
+                        </div>
+                      )
+                    ))
+                  ) : (
+                    !loading && <p>No notes available</p>
+                  )}
+          </> 
+            
+          }
+         
         </div>   
-                           {/* for group/sidebar */}
+        
+        
+        {/* for group/sidebar */}
         <div
             onMouseDown= {handleMouseDown}
             onClick = {(e) => {}}
