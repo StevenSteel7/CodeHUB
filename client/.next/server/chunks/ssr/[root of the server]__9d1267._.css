@@ -1488,6 +1488,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.\*\:pr-3 > * {
+  padding-right: .75rem;
+}
+
 .file\:border-0::file-selector-button {
   border-width: 0;
 }

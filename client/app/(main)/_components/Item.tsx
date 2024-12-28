@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ChevronDown, ChevronRight, LucideIcon } from "lucide-react";
+import { ChevronDown, ChevronRight, LucideIcon, Plus } from "lucide-react";
 
 interface ItemProps{
     id? : string; // only will have id if its a note
@@ -76,6 +76,13 @@ interface ItemProps{
           </kbd>
         )}
 
+        <div
+            role="button"
+            onClick={()=>{}}
+            className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600"
+          >
+            <Plus className="h-4 w-4 text-muted-foreground" />
+        </div>
     </div>
   )
 }

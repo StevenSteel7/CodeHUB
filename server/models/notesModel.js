@@ -25,6 +25,10 @@ const NoteSchema = new mongoose.Schema({
       type: Boolean,
       default: false,
     },
+    parentId: {
+      type: String,
+      default: '',
+    },
     userId: {
       type: String,  /* to connected with a user */
       ref: 'User',

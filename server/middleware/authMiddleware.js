@@ -8,7 +8,7 @@ import Session from '../models/sessionModel.js';
 export const requireSignIn = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
-    console.log(req.headers);
+   
      
     if (!token) {
       return res.status(401).json({ error: 'No token provided' });

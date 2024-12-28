@@ -11,6 +11,7 @@ import Item from "./Item";
 import AllNotesList from "./allNotesList";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
+import softDelete from "./softDelete";
 
 const navigation = () => {
   const isResizingRef = useRef(false);
@@ -51,7 +52,7 @@ const navigation = () => {
    // Function to create a new note
    const createNewNote = async (session: any) => {
 
-     try {      
+    try {      
     const response = await axios.post('http://localhost:8080/api/notes/create-note', 
       { title: 'Untitled', content: '' },//content
       {
@@ -61,7 +62,7 @@ const navigation = () => {
         },
       }
     );
-    console.log(response.data);
+  
     const newNote =  response.data.notes;
     setNotes((prevNotes) => [...prevNotes, newNote]);
 
@@ -193,65 +194,44 @@ const navigation = () => {
              
         </div>
         
-        <div className="mt-4" id = "notes-list"> {/*  to display all notes */}
-        {/*   {loading && <p>Loading notes...</p>}
-            {notes.length > 0 ? (
-              notes.map((note) => (
-                note && ( 
-                  console.log(note),
-                  <div key={note._id} className="note-item">
-                    <Item 
-                    id={note._id}
-                    label={note.title || "Untitled"}
-                    onClick={() => {}}
-                    icon={FileIcon}
-                    />
-                  </div>
-                    )))
-                  ) : ( !loading &&<p>No notes available</p> )}  */}
-             {
-           /*   <AllNotesList
-              session={session}
-              onClick={() => {}}
-              notes={notes}
-              setnotes={setNotes}
-              icon={FileIcon}
-              loading={loading}
-            />  */
-              
-            <>
-            {notes.length > 0 ? (
-                    notes.map((note: any) => (
-                       (
-                        <div key={note?._id} className="note-item">
-                          <div 
-                          
-                            role="button"
-                            className={cn(
-                              "group min-h-[27px] text-sm py-1 pl-3 w-full flex items-center text-muted-foreground font-medium",
-                              "hover:bg-neutral-300 dark:hover:bg-neutral-600"
-                            )}
-                          >
-                            <FileIcon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground" />
-                            <span className="truncate">
-                              { console.log(note) }
-                              {note.title}
-                            </span>
+        <div className="mt-4" id = "notes-list">    
+          <AllNotesList
+          session={session}
+          onClick={() => {}}
+          notes={notes}
+          setnotes={setNotes}
+          icon={FileIcon}
+          loading={loading}/>   
+             
+            {/* <>
+              {notes.length > 0 ? (
+                      notes.map((note: any) => (
+                        (
+                          <div key={note?._id} className="note-item">
+                            <div 
+                              role="button"
+                              className={cn(
+                                "group min-h-[27px] text-sm py-1 pl-3 w-full flex items-center text-muted-foreground font-medium",
+                                "hover:bg-neutral-300 dark:hover:bg-neutral-600"
+                              )}
+                            >
+                              <FileIcon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground" />
+                              <span className="truncate">
+                                {note.title}
+                              </span>
+                            </div>
+                            
                           </div>
-                          
-                        </div>
-                      )
-                    ))
-                  ) : (
-                    !loading && <p>No notes available</p>
-                  )}
-          </> 
+                        )
+                      ))
+                      ) : (!loading && <p>No notes available</p>)}
+              </>  
+            */}
             
-          }
          
         </div>   
         
-        
+        <Button onClick = {() => {softDelete("677049e67f6235e45e87c903",session)}}>Archive Note</Button>
         {/* for group/sidebar */}
         <div
             onMouseDown= {handleMouseDown}

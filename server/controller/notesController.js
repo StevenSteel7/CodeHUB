@@ -42,15 +42,80 @@ export const getNotes= (req, res)=>{
       notes: notes
     });
 
-  })
+  })}
  
-
-
-  /* {
-  "notes": [
-    { "_id": "1", "title": "Note 1", "content": "Content 1", "userId": "12345" },
-    { "_id": "2", "title": "Note 2", "content": "Content 2", "userId": "12345" }
-  ]
-} */
-
+ 
+  export const softDeleteNote = async (req, res) => {
+    try {
+      const userId = req.userId; // Retrieved from requireSignIn middleware
+      const { noteId } = req.params; // Extract noteId from URL parameters
+  
+      // Validate input
+      if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized user' });
+      }
+      if (!noteId) {
+        return res.status(400).json({ error: 'Note ID is required' });
+      }
+  
+      // Update the `isArchive` field for the specified note
+      const updatedNote = await Note.findOneAndUpdate(
+        { _id: noteId, userId: userId }, // Match by note ID and user ID
+        { $set: { isArchived: true } },   // Set isArchive to true
+        { new: true }                    // Return the updated document
+      );
+  
+      if (!updatedNote) {
+        return res.status(404).json({ error: 'Note not found or not authorized' });
+      }
+  
+      res.status(200).json({
+        message: 'Note archived successfully',
+        note: updatedNote, // Include the updated note in the response
+      });
+    } catch (error) {
+      console.error('Error archiving the note:', error);
+      res.status(500).json({
+        error: 'Failed to archive the note',
+        details: error.message,
+      });
+    }
   };
+  
+  export const softUnDeleteNote = async (req, res) => {
+    try {
+      const userId = req.userId; // Retrieved from requireSignIn middleware
+      const { noteId } = req.params; // Extract noteId from URL parameters
+  
+      // Validate input
+      if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized user' });
+      }
+      if (!noteId) {
+        return res.status(400).json({ error: 'Note ID is required' });
+      }
+  
+      // Update the `isArchive` field for the specified note
+      const updatedNote = await Note.findOneAndUpdate(
+        { _id: noteId, userId: userId }, // Match by note ID and user ID
+        { $set: { isArchived: false } },   // Set isArchive to true
+        { new: true }                    // Return the updated document
+      );
+  
+      if (!updatedNote) {
+        return res.status(404).json({ error: 'Note not found or not authorized' });
+      }
+  
+      res.status(200).json({
+        message: 'Note archived successfully',
+        note: updatedNote, // Include the updated note in the response
+      });
+    } catch (error) {
+      console.error('Error archiving the note:', error);
+      res.status(500).json({
+        error: 'Failed to archive the note',
+        details: error.message,
+      });
+    }
+  };
+  

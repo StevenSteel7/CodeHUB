@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon, Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 
@@ -31,31 +31,33 @@ const AllNotesList = ({ session ,onClick ,notes ,setnotes ,loading, icon: Icon,}
 
   return (
     <div>
-
-    {notes.length > 0 ? (
-        notes.map((note: any) => (
-           (
-            <div key={note._id} className="note-item">
-              <div 
-                onClick={onClick}
-                role="button"
-                className={cn(
-                  "group min-h-[27px] text-sm py-1 pl-3 w-full flex items-center text-muted-foreground font-medium",
-                  "hover:bg-neutral-300 dark:hover:bg-neutral-600"
-                )}
-              >
-                <Icon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground" />
-                <span className="truncate">
-                  
-                  {note?.title}
-                </span>
-              </div>
-            </div>
-          )
-        ))
+      {notes.length > 0 ? (
+      notes.map((note: any) => (
+        <div key={note._id} className="note-item">
+        <div
+          onClick={onClick}
+          role="button"
+          className={cn(
+          "group min-h-[27px] text-sm py-1 pl-3 pr-3 w-full hover:bg-primary/5 flex items-center text-muted-foreground font-medium",
+          note.active && "bg-primary/5 text-primary"
+          )}
+        >
+          <Icon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground" />
+          <span className="truncate">{note?.title}</span>
+          <div
+          role="button"
+          onClick={() => {}}
+          className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600"
+          >
+          <Plus className="h-4 w-4 text-muted-foreground" />
+          </div>
+        </div>
+        </div>
+      ))
       ) : (
-        !loading && <p>No notes available</p>
+      !loading && <p>No notes available</p>
       )}
+ 
       
 
 
@@ -81,3 +83,5 @@ const AllNotesList = ({ session ,onClick ,notes ,setnotes ,loading, icon: Icon,}
 };
 
 export default AllNotesList;
+
+
