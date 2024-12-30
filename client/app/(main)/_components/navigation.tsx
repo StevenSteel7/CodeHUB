@@ -200,7 +200,6 @@ const navigation = () => {
           onClick={() => {}}
           notes={notes}
           setnotes={setNotes}
-          icon={FileIcon}
           loading={loading}/>   
              
             {/* <>
