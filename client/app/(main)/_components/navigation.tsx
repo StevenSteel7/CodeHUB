@@ -194,13 +194,16 @@ const navigation = () => {
              
         </div>
         
-        <div className="mt-4" id = "notes-list">    
+        <div className="mt-4" id = "notes-list"> 
+
+        
           <AllNotesList
           session={session}
           onClick={() => {}}
           notes={notes}
           setnotes={setNotes}
-          loading={loading}/>   
+          loading={loading}/>  
+
              
             {/* <>
               {notes.length > 0 ? (

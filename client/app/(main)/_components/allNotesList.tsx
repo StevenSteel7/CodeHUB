@@ -60,7 +60,7 @@ const AllNotesList = ({ session ,onClick ,notes ,setnotes ,loading}: ItemProps )
                       hover:bg-neutral-300 dark:hover:bg-neutral-600"
             >
 
-
+            
             <Plus className="h-4 w-4 text-muted-foreground" />
           </div>
         </div>
@@ -70,11 +70,7 @@ const AllNotesList = ({ session ,onClick ,notes ,setnotes ,loading}: ItemProps )
       !loading && <p>No notes available</p>
       )}
  
-      
-
-
-   
-
+    
 
     </div>
    
