@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronsLeft, ChevronsRight, ChevronsRightIcon, FileIcon, FilesIcon, Icon, MenuIcon, PlusCircle, Search, Settings } from "lucide-react"
+import { ChevronsLeft, ChevronsRight, ChevronsRightIcon, FileIcon, FilesIcon, Icon, MenuIcon, PlusCircle, Search, Settings, Trash } from "lucide-react"
 import { ComponentRef, use, useEffect, useRef, useState } from 'react';
 import {useMediaQuery} from 'react-responsive';
 import { usePathname } from "next/navigation";
@@ -12,6 +12,9 @@ import AllNotesList from "./allNotesList";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import softDelete from "./softDelete";
+import { toast } from 'sonner';
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import TrashCan from "./TrashCan";
 
 const navigation = () => {
   const isResizingRef = useRef(false);
@@ -65,11 +68,14 @@ const navigation = () => {
   
     const newNote =  response.data.notes;
     setNotes((prevNotes) => [...prevNotes, newNote]);
+    toast.success('New note created successfully');
 
 
     // Update the UI to reflect the new note
     } 
-    catch (error) {console.error('Failed to create note', error);}
+    catch (error) {
+      console.error('Failed to create note', error);
+      toast.success('Could not create a note');}
  
 };
 
@@ -189,7 +195,7 @@ const navigation = () => {
                createNewNote(session);
 
             }
-            } label = "New page" icon ={PlusCircle}/> 
+            } label = "New Note" icon ={PlusCircle}/> 
            
              
         </div>
@@ -199,7 +205,7 @@ const navigation = () => {
         
           <AllNotesList
           session={session}
-          onClick={() => {}}
+
           notes={notes}
           setnotes={setNotes}
           loading={loading}/>  
@@ -231,9 +237,18 @@ const navigation = () => {
             */}
             
          
-        </div>   
+        </div> 
+
+        {/* trash box */}
+        <TrashCan 
+        session={session}
+        notes={notes}
+        setnotes={setNotes}
+        loading={loading}/>
         
-        <Button onClick = {() => {softDelete("677049e67f6235e45e87c903",session)}}>Archive Note</Button>
+        
+        
+        
         {/* for group/sidebar */}
         <div
             onMouseDown= {handleMouseDown}

@@ -29,6 +29,16 @@ const test = () => {
         </div>
         <div>world</div>
     </div> */
+
+
+
+    //smart trick.. to show if list is empty
+    /* 
+    <div className="mt-2 px-1 pb-1">
+        <p className="hidden last:block text-sm text-center text-muted-foreground">
+            No notes available..
+        </p>
+    </div> */
   )
 }
 

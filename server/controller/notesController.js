@@ -118,4 +118,37 @@ export const getNotes= (req, res)=>{
       });
     }
   };
+
   
+  export const DeleteNote = async (req, res) => {
+    try {
+      const userId = req.userId; // Retrieved from requireSignIn middleware
+      const { noteId } = req.params; // Extract noteId from URL parameters
+  
+      // Validate input
+      if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized user' });
+      }
+      if (!noteId) {
+        return res.status(400).json({ error: 'Note ID is required' });
+      }
+  
+      // Delete the specified note
+      const deletedNote = await Note.findOneAndDelete({ _id: noteId, userId: userId });
+  
+      if (!deletedNote) {
+        return res.status(404).json({ error: 'Note not found or not authorized' });
+      }
+  
+      res.status(200).json({
+        message: 'Note deleted successfully',
+        note: deletedNote, // Include the deleted note in the response
+      });
+    } catch (error) {
+      console.error('Error deleting the note:', error);
+      res.status(500).json({
+        error: 'Failed to delete the note',
+        details: error.message,
+      });
+    }
+  };
