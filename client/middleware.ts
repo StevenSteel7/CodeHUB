@@ -1,4 +1,4 @@
- import { betterFetch } from "@better-fetch/fetch";
+import { betterFetch } from "@better-fetch/fetch";
 import { NextResponse, type NextRequest } from "next/server";
 import type { Session } from "@/auth";
 

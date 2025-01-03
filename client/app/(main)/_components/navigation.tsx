@@ -15,6 +15,8 @@ import softDelete from "./softDelete";
 import { toast } from 'sonner';
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import TrashCan from "./TrashCan";
+import { useSettings } from "@/hooks/use-settings";
+import Router from "next/router";
 
 const navigation = () => {
   const isResizingRef = useRef(false);
@@ -26,6 +28,7 @@ const navigation = () => {
   const pathname = usePathname();
   const sessionContext = useSession();
   const session = sessionContext ? sessionContext.session : null;
+  const settings = useSettings();
 
   const [notes, setNotes] = useState<any[]>([]); // State to manage all notes
   const [loading, setLoading] = useState(true); // Loading state for fetching notes
@@ -154,6 +157,10 @@ const navigation = () => {
       };
 
 
+      const handleNoteClick = (noteId: string) => {
+        Router.push(`/${noteId}`);
+      };
+
 
   return (
    <>
@@ -182,12 +189,12 @@ const navigation = () => {
             label="Search"
             icon={Search}
             isSearch
-            onClick={() => {}}
+            onClick={() => handleNoteClick('search')}
             />
             <Item
             label="Setting"
             icon={Settings}
-            onClick={() => {}}
+            onClick={settings.onOpen}
             />
 
             <Item onClick = {async ()=> {
@@ -241,6 +248,7 @@ const navigation = () => {
 
         {/* trash box */}
         <TrashCan 
+        isMobile={isMobile}
         session={session}
         notes={notes}
         setnotes={setNotes}

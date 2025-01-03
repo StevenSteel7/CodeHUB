@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+
 import { FileIcon, LucideIcon, Minus, MoreHorizontal, Plus, Trash } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { DropdownMenu, 
@@ -11,14 +11,29 @@ import { DropdownMenu,
 
 import softDelete from "./softDelete";
 
+import { useRouter } from "next/navigation";
 
 
+
+interface Note {
+  _id: string;
+  title: string;
+  content: string;
+  createdAt: string; // ISO 8601 date string
+  updatedAt: string; // ISO 8601 date string
+  isArchived: boolean;
+  isPinned: boolean;
+  parentId: string;
+  tags: string[]; // Array of strings for tags
+  userId: string;
+  __v: number; // Version key, often used by MongoDB
+}
 
 interface ItemProps{
   id? : string; // only will have id if its a note
   documentIcon? : string;
   session : any;
-  notes : any;
+  notes : Note[];
   setnotes : any;
   loading? : boolean;
   active? : boolean;
@@ -32,23 +47,30 @@ interface ItemProps{
 };
 
 
-
 const AllNotesList = ({ session  ,notes ,setnotes ,loading}: ItemProps ) => {  
-  let active = true;
+ 
+
+  const router = useRouter();
+
+  const handleNoteClick = (noteId: string) => {
+    const pathname = window.location.pathname; // Get the current pathname
+    router.push(`${pathname}/${noteId}`); 
+  };
+
+
 
   return (
-    <div>
+    <div  >
       {notes.length > 0 && (     // only if notes are not archived
       notes.map((note: any) => ( note.isArchived == false &&(
-        
-        console.log(note),
-        <div key={note._id} className="note-item">
+        <div key={note._id} className="note-item" onClick={() => handleNoteClick(note._id)}>
         <div  
           role="button"
           className={cn(
-          "group min-h-[27px] text-sm py-1 pl-3 pr-3 w-full hover:bg-primary/5 flex items-center text-muted-foreground font-medium",
+          "group min-h-[27px] text-sm py-1 pl-3 pr-3 w-ful hover:bg-primary/5 flex items-center text-muted-foreground font-medium",
           note.active && "bg-primary/5 text-primary"
           )}
+
         >
         
           <FileIcon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground" />

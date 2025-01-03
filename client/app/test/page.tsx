@@ -39,6 +39,34 @@ const test = () => {
             No notes available..
         </p>
     </div> */
+
+
+    /* 
+  // For searching in notes
+  const filteredNotes = notes.filter((note: any) => {
+    return (
+      note.isArchived === true &&
+      note.title.toLowerCase().includes(search.toLowerCase())
+    );
+  });
+  
+ */
+
+
+
+
+  /*  for using router in a function
+
+  
+    import { useRouter } from "next/navigation";
+  
+    const router = useRouter();
+    
+    const handleNoteClick = (noteId: string) => {
+      const pathname = window.location.pathname; // Get the current pathname
+      router.push(`${pathname}/${noteId}`); 
+    };
+   */
   )
 }
 

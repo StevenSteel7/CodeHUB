@@ -7,7 +7,7 @@ runtime.loadChunk("server/chunks/ssr/node_modules_jose_dist_node_esm_72957c._.js
 runtime.loadChunk("server/chunks/ssr/node_modules_kysely_dist_esm_896233._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_better-auth_dist_152092._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_200ce6._.js");
-runtime.loadChunk("server/chunks/ssr/[root of the server]__ca2209._.js");
+runtime.loadChunk("server/chunks/ssr/[root of the server]__4a4eda._.js");
 runtime.loadChunk("server/chunks/ssr/[root of the server]__9d1267._.css");
 runtime.loadChunk("server/chunks/ssr/node_modules_ce97a5._.js");
 runtime.loadChunk("server/chunks/ssr/node_modules_next_dist_client_components_forbidden-error_b4e556.js");
