@@ -1,1 +1,1 @@
-This is a notes app for coders
+A notes app for coders
